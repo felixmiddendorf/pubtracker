@@ -22,3 +22,13 @@ div#nav{
 	text-align: center;
 	font-size: small;
 }
+
+h1{
+	font-size: medium;
+	font-weight: bold;
+	}
+
+label{
+	font-size: small;
+	display: block;
+}
