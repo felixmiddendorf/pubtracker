@@ -1,6 +1,6 @@
 <? require TEMPLATE_DIR.'layout_head.php'; ?>
 <h1>Login</h1>
-<p><?= (!empty($message))?$message:'Please log in.'; ?></p>
+<?= (!empty($message))?'<p>'.$message.'</p>':''; ?>
 <form action="?action=login" method="post">
   <p>
     <label for="user_name">Username</label>
