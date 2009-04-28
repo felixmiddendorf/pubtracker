@@ -12,6 +12,7 @@
 \usepackage[printonlyused]{acronym}		% 
 \usepackage[british]{babel}				% British English
 \selectlanguage{british}				% indeed
+\usepackage{listings}
 
 % page layout
 \textheight220mm
@@ -64,6 +65,17 @@ The following design goals are to be achieved with descending importance:
 \subsection{Frontend}
 
 \section{Installation}
+\subsection{Database}
+A SQLite database is set up as follows.
+\begin{lstlisting}[language=bash]
+cat schema.sql | sqlite3 data.db
+\end{lstlisting}
+Pubtracker brings along some demo user accounts and pubs in a seperate file.
+\begin{lstlisting}[language=bash]
+cat demodata.sql | sqlite3 data.db
+\end{lstlisting}
+Afterwards the chmod command needs to be used in order to grant the user who
+runs php write access to these files.
 
 \begin{appendix}
 
