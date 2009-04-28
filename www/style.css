@@ -10,7 +10,7 @@ body{
 	}
 
 div#header{
-	color: #fff;
+	color: #FFF;
 	background-color: #4C1B1B;
 	border-bottom: 1px solid #333;
 	font-weight: bold;
@@ -33,4 +33,10 @@ h1{
 
 label{
 	display: block;
+}
+
+th {
+	font-weight: normal;
+	background-color: #4C1B1B;
+	color: #FFF;
 }
