@@ -1,2 +1,8 @@
+# general
 *~
 *.backup
+# latex
+doc/pubtracker.aux
+doc/pubtracker.log
+doc/pubtracker.out
+doc/pubtracker.toc

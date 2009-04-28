@@ -1,0 +1,85 @@
+\documentclass[a4paper,10pt]{scrartcl}
+
+%required packages
+\usepackage{graphicx}					% Images and Graphics
+\usepackage{hyperref}					% Hyperlinks
+\usepackage[longnamesfirst]{natbib}		% Harvard Referencing System
+\usepackage[utf8]{inputenc}				% UTF8 Encoding
+\usepackage{eurosym}					% € Symbol
+\usepackage{color}						%
+\usepackage{multirow}					% 
+\usepackage{longtable}					% Multi-page tables
+\usepackage[printonlyused]{acronym}		% 
+\usepackage[british]{babel}				% British English
+\selectlanguage{british}				% indeed
+
+% page layout
+\textheight220mm
+\frenchspacing
+\parskip 8pt
+\parindent 0pt
+
+% avoid orphans and widows
+\clubpenalty 10000
+\widowpenalty 10000
+\displaywidowpenalty 10000
+
+\title{PubTracker\\A mobile Web Application\\{\small Continuous Assessment in Distributed and Mobile Computing}}
+\author{Felix Middendorf\\{\small X00069339}}
+\date{29.04.2009}
+
+% here we go
+\begin{document}
+% title page
+\maketitle
+\begin{abstract}
+	Blabla
+\end{abstract}
+\tableofcontents
+\newpage
+
+% finally, content
+
+\section{Introduction}
+
+\section{Requirement Specification}
+
+\subsection{Features}
+
+\subsection{Design Goals}
+The following design goals are to be achieved with descending importance:
+\begin{itemize}
+	\item A good user experience despite the limitations of mobile clients.
+	\item Can be used with a number of different mobile clients.
+	\item Adheres to web standards as defined by the \ac{W3C}.
+	\item Underlying data can easily be manipulated by an administrator.
+ 	\item Only open-source software should be required to operate the application.
+\end{itemize}
+
+\subsection{Networking}
+
+\section{Application Design}
+\subsection{Backend}
+
+\subsection{Frontend}
+
+\section{Installation}
+
+\begin{appendix}
+
+\section{Abbreviations}
+\begin{acronym}
+ \acro{CSS}{Casacading Style Sheets}
+ \acro{HTML}{Hypertext Markup Language}
+ \acro{HTTP}{Hypertext Transfer Protocol}
+ \acro{HTTPS}{Hypertext Transfer Protocol Secure}
+ \acro{JS}{JavaScript}
+ \acro{PIN}{Personal Identification Number}
+ \acro{SSL}{Secure Socket Layer}
+ \acro{URL}{Uniform Resource Locator}
+ \acro{W3C}{World Wide Web Consortium}
+ \acro{XML}{Extensible Markup Language}
+\end{acronym}
+\end{appendix}
+
+\end{document}
