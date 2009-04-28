@@ -14,7 +14,7 @@
 <? foreach ($friends as $f){ ?>
     <tr>
       <td><?= $f['name']; ?></td>
-      <td><a href="?action=pub&amp;pub_id=<?= $f['pub_id']; ?>"><?= $f['pub']; ?></a></td>
+      <td><a href="?action=pub&amp;pub_id=<?= $f['pub_id']; ?>&amp;<?= url_token() ?>"><?= $f['pub']; ?></a></td>
       <td><?= time_ago($f['timestamp']); ?></td>
     </tr>
 <? } ?>

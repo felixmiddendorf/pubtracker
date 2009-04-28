@@ -11,5 +11,5 @@
 	echo '<p>No one there.</p>';	
 }
 ?>
-<div id="nav"><?= menu_link() ?> <a href="?action=pubs">‹pubs</a></div>
+<div id="nav"><?= menu_link() ?> <a href="?action=pub&amp;<?= url_token() ?>">‹pubs</a></div>
 <? require TEMPLATE_DIR.'layout_foot.php'; ?>

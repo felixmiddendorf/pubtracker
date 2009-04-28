@@ -26,5 +26,5 @@ if(count($_POST) == 0){
 	$insertStmnt->bindValue('timestamp', time(), PDO::PARAM_INT);
 	$insertStmnt->execute();
 	
-	header('Location: ?action=menu');
+	header('Location: ?action=menu&session='.$token);
 }

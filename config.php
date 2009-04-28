@@ -9,10 +9,6 @@
 $cfg = array();
 // PDO connection string
 $cfg['db']['connection_string'] = 'sqlite:'.BASE_DIR.'/db/data.db';
-// expiration time of the session cookie
-$cfg['login']['expires'] = 365*24*60*60;
-// cookie name
-$cfg['login']['cookie_name'] = 'token';
 // allowed actions (whitelist)
 $cfg['actions'] = array('login', 'logout', 'menu', 'pub', 'friend', 'status');
 // expiration time of updates in seconds

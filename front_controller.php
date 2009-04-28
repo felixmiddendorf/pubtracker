@@ -17,18 +17,15 @@ require BASE_DIR.'helper.php';
 // connecting to the database
 $db = new PDO($cfg['db']['connection_string']);
 
-// trying to identify the user via cookie
+// trying to identify the user via token in URL
 $current_user = false;
-if(count($_COOKIE) > 0 && !empty($_COOKIE[$cfg['login']['cookie_name']])){
-	// the user sent a cookie
+if(!empty($_GET['session'])){
+	// the user sent a token
 	$stmnt = $db->prepare('SELECT * FROM user WHERE cookie_token = :token LIMIT 1');
-	$stmnt->bindValue('token', $_COOKIE[$cfg['login']['cookie_name']], PDO::PARAM_STR);
+	$stmnt->bindValue('token', $_GET['session'], PDO::PARAM_STR);
 	if($stmnt->execute() == 1){
 		// user found
 		$current_user = $stmnt->fetch(PDO::FETCH_ASSOC);
-	}else{
-		// no user found, the token is invalid and therefore the cookie is revoked
-		setcookie($cfg['login']['cookie_name'],'',-3600);
 	}
 }
 

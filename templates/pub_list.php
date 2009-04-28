@@ -4,7 +4,7 @@
 <? foreach($pubs as $p){ ?>
   <li>
 <? if($p['people'] > 0){ ?>
-    <a href="?action=pub&amp;pub_id=<?= $p['id']; ?>"><?= $p['name']; ?></a> <?= ($p['people'] != NULL)?'('.$p['people'].')':''; ?>
+    <a href="?action=pub&amp;pub_id=<?= $p['id']; ?>&amp;<?= url_token() ?>"><?= $p['name']; ?></a> <?= ($p['people'] != NULL)?'('.$p['people'].')':''; ?>
 <? }else{ ?>
     <?= $p['name'] ?>
 <? } ?>

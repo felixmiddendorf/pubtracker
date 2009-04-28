@@ -3,7 +3,7 @@
 <? if($last){ ?>
 <p>Last status: <?= $last['name'] ?> (<?= time_ago($last['timestamp']) ?>)</p>
 <? } ?>
-<form action="?action=status" method="post">
+<form action="?action=status&amp;<?= url_token() ?>" method="post">
   <p>
     <label for="pub">Current pub</label>
     <select name="pub_id" id="pub">
