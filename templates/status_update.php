@@ -12,9 +12,7 @@
 <? } ?>      
     </select>
   </p>
-  <p>
-    <input type="submit" value="update" /> <a href="?action=menu">cancel</a>
-  </p>
+  <p><input type="submit" value="update" /></p>
 </form>
 <div id="nav"><?= menu_link() ?></div>
 <? require TEMPLATE_DIR.'layout_foot.php'; ?>
