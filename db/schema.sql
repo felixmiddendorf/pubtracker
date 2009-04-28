@@ -4,6 +4,7 @@ CREATE TABLE user(
 	id INT AUTO_INCREMENT,
 	name VARCHAR(20),
 	password_hash VARCHAR(32),
+	password_salt VARCHAR(10),
 	cookie_token VARCHAR(32),
 	PRIMARY KEY(id)
 );
@@ -20,19 +21,3 @@ CREATE TABLE status_update(
 	FOREIGN KEY(user_id) REFERENCES user(id),
 	FOREIGN KEY(pub_id) REFERENCES pub(id)
 );
-
--- default user is felix:felix
-INSERT INTO user (id, name, password_hash, password_salt) VALUES (
-	1,
-	'felix',
-	'586194401a4245987f1902b0150bdbee',
-	1
-);
-
--- some demo pubs
-INSERT INTO pub (id, name) VALUES (1, 'globe');
-INSERT INTO pub (id, name) VALUES (2, 'hogan');
-INSERT INTO pub (id, name) VALUES (3, 'celt');
-INSERT INTO pub (id, name) VALUES (4, 'farrington');
-INSERT INTO pub (id, name) VALUES (5, 'quays');
-INSERT INTO pub (id, name) VALUES (6, 'fitz');
