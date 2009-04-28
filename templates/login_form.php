@@ -14,5 +14,4 @@
     <input type="submit" value="login" />
   </p>
 </form>
-<div id="nav"><?= menu_link() ?></div>
 <? require TEMPLATE_DIR.'layout_foot.php'; ?>
