@@ -35,8 +35,12 @@ label{
 	display: block;
 }
 
-th {
+td, th {
 	font-weight: normal;
-	background-color: #4C1B1B;
-	color: #FFF;
+	margin: 0px;
+	padding: 0px;
+	}
+
+thead, tr.alt {
+	background-color: #FFE252;
 }
