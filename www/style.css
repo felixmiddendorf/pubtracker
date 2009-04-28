@@ -42,5 +42,6 @@ td, th {
 	}
 
 thead, tr.alt {
-	background-color: #FFE252;
+	background-color: #000;
+	color: #FFF;
 }
