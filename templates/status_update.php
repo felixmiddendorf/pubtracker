@@ -1,5 +1,5 @@
 <? require TEMPLATE_DIR.'layout_head.php'; ?>
-<h1>Update your status</h1>
+<h1>Update status</h1>
 <? if($last){ ?>
 <p>Last status: <?= $last['name'] ?> (<?= time_ago($last['timestamp']) ?>)</p>
 <? } ?>
