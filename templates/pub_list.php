@@ -1,5 +1,5 @@
 <? require TEMPLATE_DIR.'layout_head.php'; ?>
-<h1>Pubs</h1>
+<h1>Go to a pub</h1>
 <ol>
 <?
 $i = 0;

@@ -6,7 +6,8 @@
 if(empty($_GET['pub_id'])){
 	// TODO Get this frickin' calculation right!
 	$query = <<<SQL
-				SELECT	p.id AS id, p.name AS name, COUNT(su.user_id) AS people
+				SELECT DISTINCT
+						p.id AS id, p.name AS name, COUNT(su.user_id) AS people
 				FROM	pub p 
 						LEFT OUTER JOIN status_update su ON (su.pub_id = p.id)
 				WHERE	(su.timestamp IS NULL OR su.timestamp > :expired)
@@ -23,7 +24,8 @@ SQL;
 	require TEMPLATE_DIR.'pub_list.php';
 }else{
 	$query = <<<SQL
-				SELECT	u.name AS name, su.timestamp AS timestamp
+				SELECT DISTINCT
+						u.name AS name, su.timestamp AS timestamp
 				FROM	pub p
 						INNER JOIN status_update su ON (p.id = su.pub_id)
 						INNER JOIN user u ON (su.user_id = u.id)
