@@ -1,0 +1,24 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFF0A5;
+	font-family: sans-serif;
+	}
+
+div#header{
+	color: #fff;
+	background-color: #4C1B1B;
+	border-bottom: 1px solid #333;
+	font-weight: bold;
+	padding: 2px 7px;
+	text-align: center;
+}
+
+div#content{
+	padding: 2px 7px;
+}
+
+div#nav{
+	text-align: center;
+	font-size: small;
+}
