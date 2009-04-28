@@ -43,6 +43,8 @@ if($current_user === false){
 	$action = $_GET['action'];
 }
 
+header('Content-Type: application/xhtml+xml; charset=utf-8');
+
 // checking action against the whitelist of actions
 if(in_array($action, $cfg['actions'])){
 	// loading action code
