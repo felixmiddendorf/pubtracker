@@ -1,13 +1,17 @@
 <? require TEMPLATE_DIR.'layout_head.php'; ?>
 <h1>Pubs</h1>
 <ol>
-<? foreach($pubs as $p){ ?>
+<?
+$i = 0;
+foreach($pubs as $p){
+	$i++;
+?>
   <li>
-<? if($p['people'] > 0){ ?>
-    <a href="?action=pub&amp;pub_id=<?= $p['id']; ?>&amp;<?= url_token() ?>"><?= $p['name']; ?></a> <?= ($p['people'] != NULL)?'('.$p['people'].')':''; ?>
-<? }else{ ?>
+	<? if($p['people'] > 0){ ?>
+    <a accesskey="<?= $i ?>" href="?action=pub&amp;pub_id=<?= $p['id']; ?>&amp;<?= url_token() ?>"><?= $p['name']; ?></a> <?= ($p['people'] != NULL)?'('.$p['people'].')':''; ?>
+	<? }else{ ?>
     <?= $p['name'] ?>
-<? } ?>
+	<? } ?>
   </li>
 <? } ?>
 </ol>
