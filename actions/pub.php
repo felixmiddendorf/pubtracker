@@ -4,20 +4,19 @@
  */
 
 if(empty($_GET['pub_id'])){
-	// TODO Get this frickin' calculation right!
 	$query = <<<SQL
-				SELECT DISTINCT
-						p.id AS id, p.name AS name, COUNT(su.user_id) AS people
-				FROM	pub p 
-						LEFT OUTER JOIN status_update su ON (su.pub_id = p.id)
+				SELECT	p.id AS id, p.name AS name, COUNT(su.user_id) AS people
+				FROM	pub p LEFT OUTER JOIN
+						(SELECT * FROM status_update WHERE user_id != :user_id) AS su
+						ON (su.pub_id = p.id)
 				WHERE	(su.timestamp IS NULL OR su.timestamp > :expired)
-						--AND (su.user_id IS NULL OR su.user_id != :user_id)
 				GROUP BY p.id, p.name
-				ORDER BY people DESC, p.name
+				ORDER BY people DESC, p.name	
 SQL;
+				
 	$stmnt = $db->prepare($query);
 	$stmnt->bindValue('expired', time()-$cfg['update']['expires'], PDO::PARAM_INT);
-	#$stmnt->bindValue(':user_id', $current_user['id'], PDO::PARAM_INT);
+	$stmnt->bindValue(':user_id', $current_user['id'], PDO::PARAM_INT);
 	$stmnt->execute();
 	$pubs = $stmnt->fetchAll(PDO::FETCH_ASSOC);
 	
