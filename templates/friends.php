@@ -3,14 +3,11 @@
 <? if(count($friends) > 0){ ?>
 <p>The following people are currently around.</p>
 <table>
-  <thead>
     <tr>
       <th>Who</th>
       <th>Where</th>
       <th>When</th>
     </tr>
-  </thead>
-  <tbody>
 <?
 $i = 0;
 foreach ($friends as $f){
@@ -22,7 +19,6 @@ $i++;
       <td><?= time_ago($f['timestamp']); ?></td>
     </tr>
 <? } ?>
-  </tbody>
 </table>
 <?
 }else{
