@@ -1,4 +1,8 @@
 <?php
+/**
+ * Contains all used CSS
+ */
+
 header('Content-type: text/css');
 // date far in the future
 header('Expires: '.gmdate("D, d M Y H:i:s", time()+365*24*60*60).' GMT');
