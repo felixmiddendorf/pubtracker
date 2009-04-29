@@ -2,6 +2,8 @@
 header('Content-type: text/css');
 // date far in the future
 header('Expires: '.gmdate("D, d M Y H:i:s", time()+365*24*60*60).' GMT');
+// proxies may cache this file
+header('Cache-Control: public');
 
 ob_start("compress");
 /**
