@@ -13,11 +13,9 @@ if($mobile){
 <? } ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-  <title><?= ($current_user)?$current_user['name']:'PubTracker'; ?></title>
+  <title><?= ($current_user)?'PubTr:'.$current_user['name']:'PubTracker'; ?></title>
   <link rel="stylesheet" type="text/css" href="./style.php" media="all" />
 </head>
 <body>
-<div id="header">
-  PubTracker
-</div>
+<div id="header">PubTracker</div>
 <div id="content">
