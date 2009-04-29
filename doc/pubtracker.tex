@@ -34,64 +34,241 @@
 % title page
 \maketitle
 \begin{abstract}
-	Blabla
+	This paper walks through the design decisions in the building of PubTracker --
+	a mobile web application which helps friends to meet spontaneously when they
+	go out.
 \end{abstract}
+\newpage
 \tableofcontents
 \newpage
-
 % finally, content
 
 \section{Introduction}
+PubTracker is a mobile web application which facilitates spontaneous meetings
+of friends in the evening by allowing them to exchange their current location,
+i.e.\ the pub they are currently in.
 
-\section{Requirement Specification}
+\section{Requirements}
+\subsection{Targeted Users}\label{r:user}
+At the current stage PubTracker is a self-hosted solution built for a closed
+group of friends or acquaintances, e.g. a class in college. This implies that everyone allows the
+everyone else to see his or her status updates.\\
+Future versions of PubTracker may be open to the general public and include a
+permission management system that allows users to manage a list of friends
+which are allowed to see status updates.
 
 \subsection{Features}
+\begin{itemize}
+  \item Log in using a user name and a password.
+  \item Users can update their own status by selecting their current position
+  from a number of stored locations.
+  \item A list of pubs is available to support the decision where to go.
+  \item A list of all users who are currently in a pub is available, too.
+  \item A table of all active users including their current location is
+  available.
+  \item Status updates expire after a reasonable period of time.
+\end{itemize}
 
 \subsection{Design Goals}
 The following design goals are to be achieved with descending importance:
 \begin{itemize}
-	\item A good user experience despite the limitations of mobile clients.
-	\item Can be used with a number of different mobile clients.
-	\item Adheres to web standards as defined by the \ac{W3C}.
+	\item High usability despite the limitations of mobile clients.
+	\item Honouring the cost implications of mobile networking.
+	\item Can be used with a variety of different (low-end) mobile clients.
+	\item Adheres to the relevant web standards as defined by the \ac{W3C}.
 	\item Underlying data can easily be manipulated by an administrator.
  	\item Only open-source software should be required to operate the application.
 \end{itemize}
 
-\subsection{Networking}
-
 \section{Application Design}
-\subsection{Backend}
+\subsection{Standards and Best-Practices}
+The site is built based on a collection of best-practices which were collected
+and edited by Luca Passani \cite{passani}. It adheres to the \ac{XHTML-MP}
+standard as defined by  the \ac{OMA} and recommendations by the \ac{W3C}
+\cite{oma:standard, w3c:recommendations}.\\
+All pages are valid \ac{XHTML-MP} and have been checked with the
+\href{http://validator.w3.org/}{Markup Validation
+Service}\footnote{\url{http://validator.w3.org/}} of the \ac{W3C}. The \ac{CSS}
+used throughout the page was validated with the \ac{W3C}'s \href{http://jigsaw.w3.org/css-validator/}{CSS Validation
+Service}\footnote{\url{http://jigsaw.w3.org/css-validator/}}.\\
+PubTracker was tested with simulators of
+\href{http://developer.openwave.com/dvl/tools_and_sdk/phone_simulator/}{OpenWave}%
+\footnote{\url{http://developer.openwave.com/dvl/tools_and_sdk/phone_simulator/}}
+and \href{http://www.opera.com/mini/demo/}{Opera
+Mini}\footnote{\url{http://www.opera.com/mini/demo/}}.
 
-\subsection{Frontend}
+\subsection{Client Recognition}
+Mobile clients are recognised based on the ``X-Wap-Profile'' and the ``Accept''
+headers of their \ac{HTTP} requests. If PubTracker identifies a mobile
+device, the mime type ``application/vnd.wap.xhtml+xml'' is served. Although
+PubTracker is targeted at mobile clients, users can visit the site using more
+sophisticated devices, e.g. a netbook or a personal computer, too. In this case
+they are served a \ac{XHTML} 1.0 Strict version in ``application/xhtml+xml''.
 
-\section{Installation}
+\subsection{Layout}
+In order to reduce the number of \ac{HTTP} requests, the traffic and costs,
+PubTracker does not make use of images at all. Instead, colors, characters and
+symbols are used. For instance, each menu link is accompanied by an opening guillemet («)
+which looks a bit like an arrow. Users generally associate this symbol with the
+backward button, e.g.\ of a stereo device.\\
+\ac{CSS} are used to improve the readability, e.g. high contrast ``zebra
+tables''.\\ The application should be more or less self-explanatory. The copy used in the
+application is reduced, clear and concise in order to accommodate the
+constraints imposed by the little screen. Thus, little
+scrolling is necessary to use the page.\\
+In general, the most important information and links are displayed right at the
+top of the page (with the exception of the branding headline).
+
+\subsection{Usability}
+Most links have access keys that are intuitively clear to the user. A link back
+to the menu is included at the end of each page. The access key of this key is
+the same everywhere: no matter where, pressing the zero key opens the menu.\\
+Users do not have to enter large amounts of text using the keypads of their
+mobile phones. Wherever possible text input is replaced by selectors or links.
+Thus, users only have to enter text when they login. However, due to the
+technique which is used to identify user session (more about this in
+\ref{security}), the user can ``bookmark'' his login. Thus, he theoretically
+only has to enter it once.
+
+\subsection{CSS}
+\acs{CSS} are used to improve the usability of the site and brand it.
+However, only little is used to achieve the aforementioned effect. The minified
+version is only about 450 bytes in size.\\
+PubTracker's use of \ac{CSS} does not fully comply with Passani's best
+practices \cite{passani}. This is by intention for the following reasons.
+Passani advocates to use only inline \ac{CSS} in order to avoid loading and
+parsing another file.\\
+However, a large percentage of the PubTracker stylesheet
+is used by every single page. Thus, by extracting all \ac{CSS} into a single
+file it can be easily cached by the browser. PubTracker minifies the
+stylesheets before sending them to the client and includes an ``Expires''
+header that is far in the future. Thanks to this the impact of the failure
+of buggy yet popular devices to cache hitherto retrieved \ac{CSS}, which Passani
+warns of, is not considerably high. There is certainly a trade-off here.
+
+\subsection{Security}\label{security}
+The software can be operated both over \ac{HTTP} or \ac{HTTPS} depending on the
+configuration of the web server. However, \ac{HTTPS} might be overkill
+as the data involved can be considered non-sensitive.\\
+Instead of cookies, which cause a lot problems on many devices due to poor
+support, the different users are identified via a token that is part of
+the \ac{URL}. When the user logs in, a unique token is randomly generated and
+stored in his record in the database. The users client is now given the token
+and embeds it in the \ac{URL}. Thus, the system is able to identify the user's
+session by looking up the received token in the database. The token generation
+is undertaken with every single login. Thus, a new login destroys older
+sessions. This guarantees that an account is only used by one client at a
+time.\\
+All passwords are stored as salted hashes. The hash algorithm is the rather
+weak md5, though \cite{ptacek}. However, the used algorithm can easily be
+altered.
+
+\subsection{Database and Administration}
+By default PubTracker uses SQLite, an embedded, single file \ac{RDBMS} that
+offers an \ac{SQL} interface, to store all its data. SQLite is supported by a
+number of tools. Thus the data can comfortably manipulated.
+
+\section{Networking Considerations}
+PubTracker is very likely to be a low-traffic site during the day. If
+used in Ireland, the activity is likely to be between 7p.m.\ and 4a.m. Most
+people would use such an application on a Friday or Saturday night.\\
+Up to five times an evening seems to be a reasonable estimate of the amount of
+interactions per person.
+
+Such a typical user interaction includes:
+\begin{itemize}
+  \item Displaying the menu (login can be omitted thanks to bookmark)
+  \item Displaying the list of people
+  \item Displaying a pub
+\end{itemize}
+According to measurements using FireBug, this has a footprint of less than 3kb.
+The status update that would typically follow later adds another 2kb. Of
+course, these numbers highly depend on the number of people actively using the
+site -- the more people post their updates, the more \ac{XHTML-MP} is generated
+and has to be transported.
+
+Due to the fact that PubTracker does not use any other elements than
+\ac{XHTML-MP} pages and only a single \ac{CSS} that is likely to be cached, only
+one, at most two \ac{HTTP} requests per page are made.
+
+In order to reduce the amount of traffic, the \ac{CSS} is minified. Moreover,
+the \ac{XHTML-MP} code is rather minimalistic and stripped down to the bare
+minimum necessary. Many pages are considerably smaller than 1kb in size; most
+smaller than 2kb depending on the activity of the users.\\
+The traffic footprint
+could possibly be further reduced by compressing the data before sending it, e.g. with ``mod\_deflate'' if the Apache Web Server
+is used. However, this is more of a web server configuration issue and PubTracker does
+not need to be altered for this.
+
+These considerations show that at the current stage a very basic \ac{VPS}
+should be sufficient to host such a site. There is no need to worry about
+requests per second and peak load times until the service is extended and
+opened for public (see \ref{r:user}).
+
+\section{Installation and Set-Up}
+\subsection{Dependencies}
+On Debian GNU/Linux and related distributions, e.g. Ubuntu, the following
+commands install all dependencies. Root rights are necessary.
+\begin{lstlisting}[language=bash]
+# update the list of available packages first
+apt-get update
+apt-get install php5 php5-sqlite3 sqlite3
+\end{lstlisting}
+
 \subsection{Database}
-A SQLite database is set up as follows.
+PubTracker uses SQLite. Although not tested, other \acs{RDBMS} might work as
+well if a \ac{PDO} driver exist. \ac{PDO}'s connection string can be configured in
+``config.php". A SQLite database is set up as follows.
+
 \begin{lstlisting}[language=bash]
 cat schema.sql | sqlite3 data.db
 \end{lstlisting}
+
 Pubtracker brings along some demo user accounts and pubs in a seperate file.
+
 \begin{lstlisting}[language=bash]
 cat demodata.sql | sqlite3 data.db
 \end{lstlisting}
+
 Afterwards the chmod command needs to be used in order to grant the user who
 runs php write access to these files.
 
+\subsection{Webserver}
+The ``DocumentRoot'', as it is called in the Apache Web Server, should point to
+the ``www'' subdirectory. The ``open\_basedir'' option of php should be set to
+PubTracker's base directory (very likely to be named ``pubtracker'').
+
 \begin{appendix}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\bibliography{references}
+\bibliographystyle{plain}
+\bibstyle{plain}
 
 \section{Abbreviations}
 \begin{acronym}
  \acro{CSS}{Casacading Style Sheets}
  \acro{HTML}{Hypertext Markup Language}
  \acro{HTTP}{Hypertext Transfer Protocol}
- \acro{HTTPS}{Hypertext Transfer Protocol Secure}
+ \acro{HTTPS}{\acs{HTTP} Secure}
  \acro{JS}{JavaScript}
- \acro{PIN}{Personal Identification Number}
- \acro{SSL}{Secure Socket Layer}
+ \acro{OMA}{Open Mobile Alliance}
+ \acro{PDO}{PHP Data Objects}
+ \acro{RDBMS}{Relational Database Management System}
+ \acro{SQL}{Structured Query Language}
  \acro{URL}{Uniform Resource Locator}
  \acro{W3C}{World Wide Web Consortium}
  \acro{XML}{Extensible Markup Language}
+ \acro{XHTML}{Extensible \acs{HTML}}
+ \acro{XHTML-MP}{\acs{XHTML} Mobile Profile}
+ \acro{VPS}{Virtual Private Server}
 \end{acronym}
 \end{appendix}
+
+\section{Declaration of Authorship}
+The work herein contained is the exclusive work of Felix Middendorf.
+
+29th April 2009
 
 \end{document}
