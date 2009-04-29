@@ -26,11 +26,11 @@ function time_ago($timestamp){
  * @return link to the main menu
  */
 function menu_link(){
-	return '<a href="?action=menu&amp;'.url_token().'">«menu</a>';
+	return '<a accesskey="0" href="?action=menu&amp;'.url_token().'">«menu</a>';
 }
 
 /**
- * Generates a url token.
+ * Generates a url token (session=TOKEN).
  *
  * @return token that can be appended to the url. Don't forget the ampersand!
  */
