@@ -4,7 +4,8 @@
  */
 
 $query = <<<SQL
-	SELECT	u.name AS name, p.name AS pub, p.id AS pub_id, su.timestamp AS timestamp
+	SELECT DISTINCT
+			u.name AS name, p.name AS pub, p.id AS pub_id, su.timestamp AS timestamp
 	FROM	user u
 			INNER JOIN status_update su ON (u.id = su.user_id)
 			INNER JOIN pub p ON (p.id = su.pub_id)
