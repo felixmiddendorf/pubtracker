@@ -52,4 +52,3 @@ if(in_array($action, $cfg['actions'])){
 	header('Status: 404 Not Found');
 	require TEMPLATE_DIR.'error.php';
 }
-?>

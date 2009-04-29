@@ -13,4 +13,3 @@ $cfg['db']['connection_string'] = 'sqlite:'.BASE_DIR.'/db/data.db';
 $cfg['actions'] = array('login', 'logout', 'menu', 'pub', 'friend', 'status');
 // expiration time of updates in seconds
 $cfg['update']['expires'] = 4*60*60;
-?>

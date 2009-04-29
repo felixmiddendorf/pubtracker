@@ -37,4 +37,3 @@ function menu_link(){
 function url_token(){
 	return ($_GET['session'] !== false)?'session='.$_GET['session']:'';
 }
-?>
