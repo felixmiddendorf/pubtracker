@@ -10,7 +10,15 @@ INSERT INTO user (id, name, password_hash, password_salt)
 -- pat:pat
 INSERT INTO user (id, name, password_hash, password_salt)
 	VALUES (4, 'pat', 'fff45757e62f0b490b304e3bf77658d6', 'Irish');
-
+-- scott:scott
+INSERT INTO user (id, name, password_hash, password_salt)
+	VALUES (5, 'scott', '301e6fb9ebbfb0d94b849536606a5e00', 'DraMa');
+-- lucy:lucy
+INSERT INTO user (id, name, password_hash, password_salt)
+	VALUES (6, 'lucy', 'd180583c00928e794f5a3719867267dd', 'Mommy!');
+-- john:john
+INSERT INTO user (id, name, password_hash, password_salt)
+	VALUES (7, 'john', '15ef153c3d00637f429576eea29cd2a0', 'DanceR');
 
 -- some pubs
 INSERT INTO pub (id, name) VALUES (1, 'globe');
