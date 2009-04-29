@@ -41,7 +41,7 @@ td, th {
 	padding: 0px;
 	}
 
-thead, tr.alt {
+th, tr.alt td{
 	background-color: #000;
 	color: #FFF;
 }
