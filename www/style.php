@@ -1,3 +1,21 @@
+<?php
+header('Content-type: text/css');
+// date far in the future
+header('Expires: '.gmdate("D, d M Y H:i:s", time()+365*24*60*60).' GMT');
+
+ob_start("compress");
+/**
+ * Compresses all CSS
+ */
+function compress($buffer) {
+  // remove all comments
+  $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
+  // remove all tabs, spaces, newlines, etc.
+  $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    ', '      ', '       '), '', $buffer);
+  return $buffer;
+}
+?>
+
 *{
 	font-size: small;
 	}
@@ -45,3 +63,7 @@ th, tr.alt td{
 	background-color: #000;
 	color: #FFF;
 }
+
+<?
+ob_end_flush();
+?>

@@ -14,7 +14,7 @@ if($mobile){
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <title><?= ($current_user)?$current_user['name']:'PubTracker'; ?></title>
-  <link rel="stylesheet" type="text/css" href="./style.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="./style.php" media="all" />
 </head>
 <body>
 <div id="header">
