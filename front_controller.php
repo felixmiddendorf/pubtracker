@@ -40,7 +40,8 @@ if($current_user === false){
 	$action = $_GET['action'];
 }
 
-header('Content-Type: text/html; charset=utf-8');
+// if the client sends a X-Wap-Profile header, it is a mobile device
+$mobile = array_key_exists('HTTP_X_WAP_PROFILE', $_SERVER);
 
 // checking action against the whitelist of actions
 if(in_array($action, $cfg['actions'])){
