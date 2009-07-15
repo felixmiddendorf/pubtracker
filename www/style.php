@@ -3,17 +3,19 @@
  * Contains all used CSS
  */
 
+// this is a css file
 header('Content-type: text/css');
-// date far in the future
+// date one year in the future
 header('Expires: '.gmdate("D, d M Y H:i:s", time()+365*24*60*60).' GMT');
 // proxies may cache this file
 header('Cache-Control: public');
+// the output of this file is buffered and run through css_compress
+ob_start("css_compress");
 
-ob_start("compress");
 /**
  * Compresses all CSS
  */
-function compress($buffer) {
+function css_compress($buffer) {
   // remove all comments
   $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
   // remove all tabs, spaces, newlines, etc.
@@ -70,6 +72,7 @@ th, tr.alt td{
 	color: #FFF;
 }
 
-<?
+<?php
+// the buffered output is flushed to the client
 ob_end_flush();
 ?>
