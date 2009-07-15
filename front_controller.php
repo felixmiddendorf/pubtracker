@@ -43,7 +43,7 @@ if($current_user === false){
 // if the client sends a X-Wap-Profile header, it is a mobile device
 $mobile = array_key_exists('HTTP_X_WAP_PROFILE', $_SERVER) && (strpos($_SERVER['HTTP_ACCEPT'], 'application/vnd.wap.xhtml+xml') !== false);
 
-// checking action against the whitelist of actions
+// checking requested action against the whitelist of actions
 if(in_array($action, $cfg['actions'])){
 	// loading action code
 	require ACTION_DIR.$action.'.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * Logs the user out and revokes the cookie.
+ * Logs the user out.
  */
 
 // redirect to login
