@@ -12,7 +12,7 @@
 function time_ago($timestamp){
 	$delta = floor((time() - $timestamp)/60); // minutes
 	if($delta < 10){
-		return 'now';	
+		return 'now';
 	}elseif($delta < 60){
 		return $delta.'min';
 	}else{
