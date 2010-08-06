@@ -1,18 +1,23 @@
 \documentclass[a4paper,10pt]{scrartcl}
 
 %required packages
-\usepackage{graphicx}					% Images and Graphics
+\usepackage[utf8]{inputenc}				% UTF8 encoding
+\usepackage[T1]{fontenc}				% T1 font encoding
+\usepackage{lmodern}					% Nicer fonts
+\usepackage{graphicx}					% Images and graphics
 \usepackage{hyperref}					% Hyperlinks
-\usepackage[longnamesfirst]{natbib}		% Harvard Referencing System
-\usepackage[utf8]{inputenc}				% UTF8 Encoding
-\usepackage{eurosym}					% € Symbol
-\usepackage{color}						%
-\usepackage{multirow}					% 
-\usepackage{longtable}					% Multi-page tables
-\usepackage[printonlyused]{acronym}		% 
+\hypersetup{	pdfcreator={LaTeX},%
+		pdfproducer={pdfTeX},%
+		pdfpagelayout={OneColumn},%
+		colorlinks=false,%
+		pdfborder={0 0 0},%
+		bookmarksopen=false%
+}
+\usepackage[longnamesfirst]{natbib}			% Harvard Referencing System
+\usepackage[printonlyused]{acronym}			% Abbreviations and acronyms
 \usepackage[british]{babel}				% British English
-\selectlanguage{british}				% indeed
-\usepackage{listings}
+\selectlanguage{british}				% indeed ;)
+\usepackage{listings}					% source code
 
 % page layout
 \textheight220mm
@@ -34,9 +39,9 @@
 % title page
 \maketitle
 \begin{abstract}
-	This paper walks through the design decisions in the building of PubTracker --
-	a mobile web application which helps friends to meet spontaneously when they
-	go out.
+This paper walks through the design decisions in the building of PubTracker --
+a mobile web application which helps friends to meet spontaneously when they
+go out.
 \end{abstract}
 \newpage
 \tableofcontents
@@ -46,12 +51,12 @@
 \section{Introduction}
 PubTracker is a mobile web application which facilitates spontaneous meetings
 of friends in the evening by allowing them to exchange their current location,
-i.e.\ the pub they are currently in.
+i.\,e.\ the pub they are currently in.
 
 \section{Requirements}
 \subsection{Targeted Users}\label{r:user}
 At the current stage PubTracker is a self-hosted solution built for a closed
-group of friends or acquaintances, e.g. a class in college. This implies that everyone allows the
+group of friends or acquaintances, e.\,g. a class in college. This implies that everyone allows the
 everyone else to see his or her status updates.\\
 Future versions of PubTracker may be open to the general public and include a
 permission management system that allows users to manage a list of friends
@@ -102,16 +107,16 @@ Mobile clients are recognised based on the ``X-Wap-Profile'' and the ``Accept''
 headers of their \ac{HTTP} requests. If PubTracker identifies a mobile
 device, the mime type ``application/vnd.wap.xhtml+xml'' is served. Although
 PubTracker is targeted at mobile clients, users can visit the site using more
-sophisticated devices, e.g. a netbook or a personal computer, too. In this case
-they are served a \ac{XHTML} 1.0 Strict version in ``application/xhtml+xml''.
+sophisticated devices, e.\,g. a netbook or a personal computer, too. In this case
+they are served an \ac{XHTML} 1.0 Strict version in ``application/xhtml+xml''.
 
 \subsection{Layout}
 In order to reduce the number of \ac{HTTP} requests, the traffic and costs,
 PubTracker does not make use of images at all. Instead, colors, characters and
 symbols are used. For instance, each menu link is accompanied by an opening guillemet («)
 which looks a bit like an arrow. Users generally associate this symbol with the
-backward button, e.g.\ of a stereo device.\\
-\ac{CSS} are used to improve the readability, e.g. high contrast ``zebra
+backward button, e.\,g.\ of a stereo device.\\
+\ac{CSS} are used to improve the readability, e.\,g. high contrast ``zebra
 tables''.\\ The application should be more or less self-explanatory. The copy used in the
 application is reduced, clear and concise in order to accommodate the
 constraints imposed by the little screen. Thus, little
@@ -196,9 +201,10 @@ the \ac{XHTML-MP} code is rather minimalistic and stripped down to the bare
 minimum necessary. Many pages are considerably smaller than 1kb in size; most
 smaller than 2kb depending on the activity of the users.\\
 The traffic footprint
-could possibly be further reduced by compressing the data before sending it, e.g. with ``mod\_deflate'' if the Apache Web Server
-is used. However, this is more of a web server configuration issue and PubTracker does
-not need to be altered for this.
+could possibly be further reduced by compressing the data before sending it,
+e.\,g. with ``mod\_deflate'' if the Apache Web Server is used. However, this is
+ more of a web server configuration issue and PubTracker does not need to be
+altered for this.
 
 These considerations show that at the current stage a very basic \ac{VPS}
 should be sufficient to host such a site. There is no need to worry about
@@ -207,7 +213,7 @@ opened for public (see \ref{r:user}).
 
 \section{Installation and Set-Up}
 \subsection{Dependencies}
-On Debian GNU/Linux and related distributions, e.g. Ubuntu, the following
+On Debian GNU/Linux and related distributions, e.\,g. Ubuntu, the following
 commands install all dependencies. Root rights are necessary.
 \begin{lstlisting}[language=bash]
 # update the list of available packages first
