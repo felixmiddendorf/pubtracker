@@ -9,11 +9,11 @@
       <th>When</th>
     </tr>
 <?
-$i = 0;
+$even = true;
 foreach ($friends as $f){
-$i++;
+	$even = !$even;
 ?>
-    <tr<?= ($i%2 == 0)?' class="alt"':'' ?>>
+    <tr<?= ($even)?' class="alt"':'' ?>>
       <td><?= $f['name']; ?></td>
       <td><a href="?action=pub&amp;pub_id=<?= $f['pub_id']; ?>&amp;<?= url_token() ?>"><?= $f['pub']; ?></a></td>
       <td><?= time_ago($f['timestamp']); ?></td>
