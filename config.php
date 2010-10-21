@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the configuration file.
+ * This is PubTracker's configuration file.
  */
 
 /**
@@ -11,5 +11,5 @@ $cfg = array();
 $cfg['db']['connection_string'] = 'sqlite:'.BASE_DIR.'/db/data.db';
 // allowed actions (whitelist)
 $cfg['actions'] = array('login', 'logout', 'menu', 'pub', 'friend', 'status');
-// expiration time of updates in seconds
+// expiration time of location updates in seconds
 $cfg['update']['expires'] = 4*60*60;
